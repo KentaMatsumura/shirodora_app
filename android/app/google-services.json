@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1096916080653",
+    "firebase_url": "https://shirodoraapp.firebaseio.com",
+    "project_id": "shirodoraapp",
+    "storage_bucket": "shirodoraapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096916080653:android:e4aa0a8a89a07d74eb5d44",
+        "android_client_info": {
+          "package_name": "com.example.shirodoraapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096916080653-092aom6vc2i9uktunm4nm9u5u5ui7196.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9xtEv2eBorZQQ8hRiZXmM_KZv416bWfM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096916080653-092aom6vc2i9uktunm4nm9u5u5ui7196.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1096916080653-nmnborekdcdlb2ve16hc2jck1fu7nssb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shirodoraapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

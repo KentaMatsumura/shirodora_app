@@ -7,8 +7,6 @@ class ChipsContainer extends StatefulWidget {
 }
 
 class _ChipsContainerState extends State<ChipsContainer> {
-  bool _allCost = true;
-
   List<String> chipList = [
     'All',
     '1コスト',
@@ -46,7 +44,7 @@ class ChoiceChipWidget extends StatefulWidget {
 }
 
 class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
-  String selectedChoice = "";
+  String selectedChoice = "ALL";
 
   _buildChoiceList() {
     List<Widget> choices = List();
@@ -65,6 +63,7 @@ class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
           onSelected: (selected) {
             setState(() {
               selectedChoice = item;
+              // ここで検索をかける
             });
           },
         ),

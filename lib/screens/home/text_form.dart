@@ -12,6 +12,7 @@ class _TextFormState extends State<TextForm> {
   @override
   Widget build(BuildContext context) {
     var searchItems = Provider.of<Map>(context);
+    String searchValue = '';
     return Form(
       key: _formKey,
       child: Column(
@@ -21,7 +22,6 @@ class _TextFormState extends State<TextForm> {
             decoration: InputDecoration(
               labelText: 'Character Name',
             ),
-            validator: (val) => val.isEmpty ? 'Enter an email' : null,
             onChanged: (val) {
               setState(() => searchItems['name'] = val);
             },
@@ -38,6 +38,8 @@ class _TextFormState extends State<TextForm> {
               // the form is invalid.
               if (_formKey.currentState.validate()) {
                 // Process data.
+                print('$searchItems');
+                // ここで検索をかける
               }
             },
           ),

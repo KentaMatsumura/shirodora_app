@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shirodoraapp/models/character.dart';
 import 'package:shirodoraapp/screens/home/chips_container.dart';
 import 'package:shirodoraapp/screens/home/text_form.dart';
 
@@ -9,12 +10,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var searchItems = {'cost': 'ALL', 'name': ''};
+  final Map searchItems = {'cost': 'ALL', 'name': ''};  // 検索している値の確認用
+  final Character character = new Character();
 
   @override
   Widget build(BuildContext context) {
-    return Provider<Map>.value(
-      value: searchItems,
+    return MultiProvider(
+      providers: [
+        Provider<Map>.value(value: searchItems),
+        Provider<Character>.value(value: character),
+      ],
       child: Container(
         child: Scaffold(
           backgroundColor: Colors.brown[50],
@@ -29,10 +34,6 @@ class _HomeState extends State<Home> {
               Text('Character List'),
               TextForm(),
               ChipsContainer(),
-              RaisedButton(
-                onPressed: () {
-                },
-              )
             ],
           ),
         ),

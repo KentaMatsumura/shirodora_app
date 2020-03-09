@@ -7,7 +7,6 @@ class Character {
 class CharacterData {
   final String uid;
   final String name;
-  final List<int> status;
 
-  CharacterData({this.uid, this.name, this.status});
+  CharacterData({this.uid, this.name});
 }

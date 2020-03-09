@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/character.dart';
+import 'package:shirodoraapp/screens/home/character_list.dart';
 import 'package:shirodoraapp/screens/home/chips_container.dart';
 import 'package:shirodoraapp/screens/home/text_form.dart';
 
@@ -34,6 +35,7 @@ class _HomeState extends State<Home> {
               Text('Character List'),
               TextForm(),
               ChipsContainer(),
+//              CharacterList(),
             ],
           ),
         ),

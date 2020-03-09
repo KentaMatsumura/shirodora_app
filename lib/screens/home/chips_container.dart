@@ -8,12 +8,21 @@ class ChipsContainer extends StatefulWidget {
 
 class _ChipsContainerState extends State<ChipsContainer> {
   List<String> chipList = [
-    'All',
+    'ALL',
     '1コスト',
     '2コスト',
     '3コスト',
     '4コスト',
     '5コスト',
+  ];
+
+  List<String> costList = [
+    '*',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
   ];
 
   @override
@@ -27,7 +36,7 @@ class _ChipsContainerState extends State<ChipsContainer> {
         spacing: 8.0,
         runSpacing: 4.0,
         children: <Widget>[
-          ChoiceChipWidget(chipList),
+          ChoiceChipWidget(chipList, costList),
         ],
       ),
     );
@@ -35,9 +44,10 @@ class _ChipsContainerState extends State<ChipsContainer> {
 }
 
 class ChoiceChipWidget extends StatefulWidget {
-  final List<String> reportList;
+  final List<String> chipList;
+  final List<String> costList;
 
-  ChoiceChipWidget(this.reportList);
+  ChoiceChipWidget(this.chipList, this.costList);
 
   @override
   _ChoiceChipWidgetState createState() => new _ChoiceChipWidgetState();
@@ -48,7 +58,7 @@ class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
 
   _buildChoiceList() {
     List<Widget> choices = List();
-    widget.reportList.forEach((item) {
+    widget.chipList.forEach((item) {
       choices.add(Container(
         padding: const EdgeInsets.all(2.0),
         child: ChoiceChip(
@@ -63,7 +73,6 @@ class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
           onSelected: (selected) {
             setState(() {
               selectedChoice = item;
-              // ここで検索をかける
             });
           },
         ),
@@ -75,7 +84,8 @@ class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
   @override
   Widget build(BuildContext context) {
     var searchItems = Provider.of<Map>(context);
-    searchItems['cost'] = selectedChoice;
+    searchItems['cost'] = widget.costList[widget.chipList.indexWhere((note) => note.startsWith(selectedChoice))];
+    print('${searchItems['cost']}');
     return Wrap(
       children: _buildChoiceList(),
     );

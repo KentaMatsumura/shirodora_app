@@ -27,22 +27,6 @@ class _TextFormState extends State<TextForm> {
             },
             cursorColor: Colors.brown, // カーソルの色
           ),
-          RaisedButton(
-            color: Colors.pink[400],
-            child: Text(
-              'Search',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () {
-              // Validate will return true if the form is valid, or false if
-              // the form is invalid.
-              if (_formKey.currentState.validate()) {
-                // Process data.
-                print('$searchItems');
-                // ここで検索をかける
-              }
-            },
-          ),
         ],
       ),
     );

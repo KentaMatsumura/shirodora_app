@@ -12,14 +12,11 @@ class DatabaseService {
 
   // detail list from snapshot
   List<Detail> _detailListFromSnapshot(QuerySnapshot snapshot) {
-//    snapshot.documents.forEach((doc) {
-//      print('${doc.data['name']}');
-//    });
-
     return snapshot.documents.map((doc) {
       return Detail(
         name: doc.data['name'] ?? '',
         cost: doc.data['details']['cost'] ?? '',
+        cid: doc.data['id'] ?? '',
       );
     }).toList();
   }
@@ -32,11 +29,13 @@ class DatabaseService {
     );
   }
 
+  Future<QuerySnapshot> get cid {
+    return characterCollection.getDocuments();
+  }
+
   // get details stream
   Stream<List<Detail>> get details {
-    return characterCollection
-        .snapshots()
-        .map(_detailListFromSnapshot);
+    return characterCollection.snapshots().map(_detailListFromSnapshot);
   }
 
   // get character doc stream
@@ -45,5 +44,9 @@ class DatabaseService {
         .document(uid)
         .snapshots()
         .map(_characterDataFromSnapshot);
+  }
+
+  Future getDocuments() async {
+    return await characterCollection.getDocuments();
   }
 }

@@ -7,23 +7,9 @@ class ChipsContainer extends StatefulWidget {
 }
 
 class _ChipsContainerState extends State<ChipsContainer> {
-  List<String> chipList = [
-    'ALL',
-    '1コスト',
-    '2コスト',
-    '3コスト',
-    '4コスト',
-    '5コスト',
-  ];
+  List<String> chipList = ['ALL', '1コスト', '2コスト', '3コスト', '4コスト', '5コスト'];
 
-  List<String> costList = [
-    '*',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-  ];
+  List<String> costList = ['*', '1', '2', '3', '4', '5'];
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +70,8 @@ class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
   @override
   Widget build(BuildContext context) {
     var searchItems = Provider.of<Map>(context);
-    searchItems['cost'] = widget.costList[widget.chipList.indexWhere((note) => note.startsWith(selectedChoice))];
-    print('${searchItems['cost']}');
+    searchItems['cost'] = widget.costList[
+        widget.chipList.indexWhere((note) => note.startsWith(selectedChoice))];
     return Wrap(
       children: _buildChoiceList(),
     );

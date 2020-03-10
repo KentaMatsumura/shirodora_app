@@ -11,8 +11,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final Map searchItems = {'cost': 'ALL', 'name': ''};  // 検索している値の確認用
+  final Map searchItems = {'cost': 'ALL', 'name': ''}; // 検索している値の確認用
   final Character character = new Character();
+  Image _image;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class _HomeState extends State<Home> {
               Text('Character List'),
               TextForm(),
               ChipsContainer(),
-//              CharacterList(),
+              CharacterList(),
             ],
           ),
         ),

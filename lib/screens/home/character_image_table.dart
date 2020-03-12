@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:shirodoraapp/models/detail.dart';
 
-class SampleLayout extends StatefulWidget {
+class CharacterImageTable extends StatefulWidget {
   final List<Detail> characterList;
 
-  SampleLayout({this.characterList});
+  CharacterImageTable({this.characterList});
 
   @override
-  _SampleLayoutState createState() => _SampleLayoutState();
+  _CharacterImageTableState createState() => _CharacterImageTableState();
 }
 
-class _SampleLayoutState extends State<SampleLayout> {
+class _CharacterImageTableState extends State<CharacterImageTable> {
   List<Widget> images = List();
 
   _buildImage() {
     widget.characterList.forEach((item) {
-      images.add(Image.asset(
-        'assets/${item.cid}.png',
-        scale: 5.0,
+      images.add(GestureDetector(
+        onTap: () {
+          print('${item.cid}');
+        },
+        child: Image.asset(
+          'assets/${item.cid}.png',
+          scale: 5.0,
+        ),
       ));
     });
     return images;

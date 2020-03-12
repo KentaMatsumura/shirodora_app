@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/detail.dart';
-import 'package:shirodoraapp/screens/home/sample_layout.dart';
+import 'package:shirodoraapp/screens/home/character_image_table.dart';
 
 class CharacterTable extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class _CharacterTableState extends State<CharacterTable> {
     final details = Provider.of<List<Detail>>(context) ?? [];
     details.sort((a, b) => a.cid - b.cid);
     return Container(
-      child: SampleLayout(characterList: details,),
+      child: CharacterImageTable(characterList: details,),
     );
   }
 }

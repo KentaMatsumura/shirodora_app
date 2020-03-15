@@ -2,19 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/condition.dart';
 
-class ChipsContainer extends StatefulWidget {
-  @override
-  _ChipsContainerState createState() => _ChipsContainerState();
-}
+class ChipsContainer extends StatelessWidget {
+  final List<String> chipList = ['ALL', '1コスト', '2コスト', '3コスト', '4コスト', '5コスト'];
 
-class _ChipsContainerState extends State<ChipsContainer> {
-  List<String> chipList = ['ALL', '1コスト', '2コスト', '3コスト', '4コスト', '5コスト'];
-
-  List<String> costList = ['', '1', '2', '3', '4', '5'];
-
-  String selectedChoice = "ALL";
+  final List<String> costList = ['', '1', '2', '3', '4', '5'];
 
   _buildChoiceList(searchItems) {
+    var selectedChoice = "ALL";
+
     List<Widget> choices = List();
     chipList.forEach((item) {
       choices.add(Container(

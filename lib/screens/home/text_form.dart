@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shirodoraapp/models/condition.dart';
 
 class TextForm extends StatefulWidget {
   @override
@@ -11,8 +12,7 @@ class _TextFormState extends State<TextForm> {
 
   @override
   Widget build(BuildContext context) {
-    var searchItems = Provider.of<Map>(context);
-    String searchValue = '';
+    var searchItems = Provider.of<Condition>(context);
     return Form(
       key: _formKey,
       child: Column(
@@ -23,7 +23,9 @@ class _TextFormState extends State<TextForm> {
               labelText: 'Character Name',
             ),
             onChanged: (val) {
-              setState(() => searchItems['name'] = val);
+              setState(() {
+                searchItems.setName(val);
+              });
             },
             cursorColor: Colors.brown, // カーソルの色
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/character.dart';
+import 'package:shirodoraapp/models/condition.dart';
 import 'package:shirodoraapp/screens/home/character_list.dart';
 import 'package:shirodoraapp/screens/home/chips_container.dart';
 import 'package:shirodoraapp/screens/home/text_form.dart';
@@ -11,17 +12,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final Map searchItems = {'cost': 'ALL', 'name': ''}; // 検索している値の確認用
+//  final _searchItems = ValueNotifier<Condition>(new Condition()); // 検索している値の確認用
+//  Condition _searchItems; // 検索している値の確認用
+  Condition _searchItems = new Condition(); // 検索している値の確認用
   final Character character = new Character();
-  Image _image;
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<Map>.value(value: searchItems),
-        Provider<Character>.value(value: character),
-      ],
+    return ChangeNotifierProvider<Condition>(
+      create: (_) => Condition(),
       child: Container(
         child: Scaffold(
           backgroundColor: Colors.brown[50],
@@ -36,11 +35,22 @@ class _HomeState extends State<Home> {
               Text('Character List'),
               TextForm(),
               ChipsContainer(),
-              CharacterList(),
+              SampleText(),
+//              CharacterList(),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class SampleText extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var searchItems = Provider.of<Condition>(context);
+    return Center(
+      child: Text('${searchItems.cost}'),
     );
   }
 }

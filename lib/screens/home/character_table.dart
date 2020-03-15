@@ -17,4 +17,7 @@ class _CharacterTableState extends State<CharacterTable> {
       child: CharacterImageTable(characterList: details,),
     );
   }
+
 }
+
+

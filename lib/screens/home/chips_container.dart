@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shirodoraapp/models/condition.dart';
 
 class ChipsContainer extends StatefulWidget {
   @override
@@ -9,42 +10,13 @@ class ChipsContainer extends StatefulWidget {
 class _ChipsContainerState extends State<ChipsContainer> {
   List<String> chipList = ['ALL', '1コスト', '2コスト', '3コスト', '4コスト', '5コスト'];
 
-  List<String> costList = ['*', '1', '2', '3', '4', '5'];
+  List<String> costList = ['', '1', '2', '3', '4', '5'];
 
-  @override
-  Widget build(BuildContext context) {
-    var searchItems = Provider.of<Map>(context);
-
-    return Provider<Map>.value(
-      value: searchItems,
-      child: Wrap(
-        direction: Axis.horizontal,
-        spacing: 8.0,
-        runSpacing: 4.0,
-        children: <Widget>[
-          ChoiceChipWidget(chipList, costList),
-        ],
-      ),
-    );
-  }
-}
-
-class ChoiceChipWidget extends StatefulWidget {
-  final List<String> chipList;
-  final List<String> costList;
-
-  ChoiceChipWidget(this.chipList, this.costList);
-
-  @override
-  _ChoiceChipWidgetState createState() => new _ChoiceChipWidgetState();
-}
-
-class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
   String selectedChoice = "ALL";
 
-  _buildChoiceList() {
+  _buildChoiceList(searchItems) {
     List<Widget> choices = List();
-    widget.chipList.forEach((item) {
+    chipList.forEach((item) {
       choices.add(Container(
         padding: const EdgeInsets.all(2.0),
         child: ChoiceChip(
@@ -57,9 +29,8 @@ class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
           selectedColor: Colors.brown[300],
           selected: selectedChoice == item,
           onSelected: (selected) {
-            setState(() {
-              selectedChoice = item;
-            });
+            searchItems.setCost(item);
+            selectedChoice = item;
           },
         ),
       ));
@@ -69,11 +40,13 @@ class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var searchItems = Provider.of<Map>(context);
-    searchItems['cost'] = widget.costList[
-        widget.chipList.indexWhere((note) => note.startsWith(selectedChoice))];
+    var searchItems = Provider.of<Condition>(context);
+
     return Wrap(
-      children: _buildChoiceList(),
+      direction: Axis.horizontal,
+      spacing: 8.0,
+      runSpacing: 4.0,
+      children: _buildChoiceList(searchItems),
     );
   }
 }

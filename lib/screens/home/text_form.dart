@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/condition.dart';
 
-class TextForm extends StatefulWidget {
-  @override
-  _TextFormState createState() => _TextFormState();
-}
-
-class _TextFormState extends State<TextForm> {
+class TextForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -22,11 +17,7 @@ class _TextFormState extends State<TextForm> {
             decoration: InputDecoration(
               labelText: 'Character Name',
             ),
-            onChanged: (val) {
-              setState(() {
-                searchItems.setName(val);
-              });
-            },
+            onChanged: (val) => searchItems.setName(val),
             cursorColor: Colors.brown, // カーソルの色
           ),
         ],

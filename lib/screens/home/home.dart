@@ -50,7 +50,7 @@ class SampleText extends StatelessWidget {
   Widget build(BuildContext context) {
     var searchItems = Provider.of<Condition>(context);
     return Center(
-      child: Text('${searchItems.cost}'),
+      child: Text('${searchItems.cost}:::${searchItems.name}'),
     );
   }
 }

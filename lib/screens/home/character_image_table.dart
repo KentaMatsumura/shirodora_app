@@ -38,4 +38,8 @@ class _CharacterImageTableState extends State<CharacterImageTable> {
       ),
     );
   }
+
+  void dispose(){
+    super.dispose();
+  }
 }

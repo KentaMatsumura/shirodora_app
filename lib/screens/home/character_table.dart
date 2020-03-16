@@ -14,10 +14,7 @@ class _CharacterTableState extends State<CharacterTable> {
     final details = Provider.of<List<Detail>>(context) ?? [];
     details.sort((a, b) => a.cid - b.cid);
     return Container(
-      child: CharacterImageTable(characterList: details,),
+      child: CharacterImageTable(characterList: details),
     );
   }
-
 }
-
-

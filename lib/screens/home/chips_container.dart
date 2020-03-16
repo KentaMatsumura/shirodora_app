@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/condition.dart';
 
-class ChipsContainer extends StatelessWidget {
+class ChipsContainer extends StatefulWidget {
+  @override
+  _ChipsContainerState createState() => _ChipsContainerState();
+}
+
+class _ChipsContainerState extends State<ChipsContainer> {
   final List<String> chipList = ['ALL', '1コスト', '2コスト', '3コスト', '4コスト', '5コスト'];
 
-  final List<String> costList = ['', '1', '2', '3', '4', '5'];
+  final List<String> costList = ['0', '1', '2', '3', '4', '5'];
 
-  _buildChoiceList(searchItems) {
-    var selectedChoice = "ALL";
+  var selectedChoice = "ALL";
 
+  _buildChips(searchItems) {
     List<Widget> choices = List();
     chipList.forEach((item) {
       choices.add(Container(
@@ -24,8 +29,9 @@ class ChipsContainer extends StatelessWidget {
           selectedColor: Colors.brown[300],
           selected: selectedChoice == item,
           onSelected: (selected) {
-            searchItems.setCost(item);
-            selectedChoice = item;
+            setState(() => selectedChoice = item);
+            searchItems.setCost(costList[chipList
+                .indexWhere((note) => note.startsWith(selectedChoice))]);
           },
         ),
       ));
@@ -41,7 +47,7 @@ class ChipsContainer extends StatelessWidget {
       direction: Axis.horizontal,
       spacing: 8.0,
       runSpacing: 4.0,
-      children: _buildChoiceList(searchItems),
+      children: _buildChips(searchItems),
     );
   }
 }

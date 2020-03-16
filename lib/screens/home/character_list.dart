@@ -14,21 +14,17 @@ class _CharacterListState extends State<CharacterList> {
   @override
   Widget build(BuildContext context) {
     final searchItems = Provider.of<Condition>(context);
-    final detailsList = DatabaseService().details;
     return StreamProvider<List<Detail>>.value(
-      value: _searchCharacter(searchItems, detailsList),
+      value: DatabaseService(searchItems: searchItems).details,
       child: Container(
         child: CharacterTable(),
       ),
     );
   }
 
-  _searchCharacter(Condition searchItems, Stream<List<Detail>> detailsList) {
-    List<Detail> result;
-    detailsList.forEach((item) {
-      item.forEach((detail) {
-      });
-    });
-    return detailsList;
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

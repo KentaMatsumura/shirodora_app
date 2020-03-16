@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shirodoraapp/screens/home/character_image_table.dart';
+import 'package:shirodoraapp/screens/home/character_list.dart';
 
 class Condition with ChangeNotifier {
   String _name = '';

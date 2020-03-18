@@ -21,10 +21,4 @@ class _CharacterListState extends State<CharacterList> {
       ),
     );
   }
-
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }

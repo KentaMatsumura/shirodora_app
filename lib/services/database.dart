@@ -38,7 +38,9 @@ class DatabaseService {
         }).toList();
       case '5':
         return snapshot.documents
-            .where((doc) => int.parse(doc.data['details']['cost']) >= int.parse(searchItems.cost))
+            .where((doc) =>
+                int.parse(doc.data['details']['cost']) >=
+                int.parse(searchItems.cost))
             .map((doc) {
           return Detail(
             name: doc.data['name'] ?? '',

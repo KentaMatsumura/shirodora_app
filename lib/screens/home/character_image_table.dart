@@ -39,7 +39,9 @@ class _CharacterImageTableState extends State<CharacterImageTable> {
     );
   }
 
-  void dispose(){
-    super.dispose();
+  @override
+  void didUpdateWidget(Widget oldWidget){
+    super.didUpdateWidget(oldWidget);
+    images.clear();
   }
 }

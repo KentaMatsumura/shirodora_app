@@ -12,16 +12,16 @@ class DatabaseService {
       Firestore.instance.collection('character');
 
   // detail list from snapshot
+  // ignore: missing_return
   List<Detail> _detailListFromSnapshot(QuerySnapshot snapshot) {
     switch (searchItems.cost) {
       case '':
       case '0':
-        return snapshot.documents.map((doc) {
-          return Detail(
-            name: doc.data['name'] ?? '',
-            cost: doc.data['details']['cost'] ?? '',
-            cid: doc.data['id'] ?? '',
-          );
+        return snapshot.documents
+            .where((doc) =>
+                searchCharacterWithName(doc.data['name'], searchItems.name))
+            .map((doc) {
+          return getData(doc);
         }).toList();
       case '1':
       case '2':
@@ -29,25 +29,42 @@ class DatabaseService {
       case '4':
         return snapshot.documents
             .where((doc) => doc.data['details']['cost'] == searchItems.cost)
+            .where((doc) =>
+                searchCharacterWithName(doc.data['name'], searchItems.name))
             .map((doc) {
-          return Detail(
-            name: doc.data['name'] ?? '',
-            cost: doc.data['details']['cost'] ?? '',
-            cid: doc.data['id'] ?? '',
-          );
+          return getData(doc);
         }).toList();
       case '5':
         return snapshot.documents
             .where((doc) =>
                 int.parse(doc.data['details']['cost']) >=
                 int.parse(searchItems.cost))
+            .where((doc) =>
+                searchCharacterWithName(doc.data['name'], searchItems.name))
             .map((doc) {
-          return Detail(
-            name: doc.data['name'] ?? '',
-            cost: doc.data['details']['cost'] ?? '',
-            cid: doc.data['id'] ?? '',
-          );
+          return getData(doc);
         }).toList();
+    }
+  }
+
+  Detail getData(DocumentSnapshot doc) {
+    return Detail(
+      name: doc.data['name'] ?? '',
+      cost: doc.data['details']['cost'] ?? '',
+      cid: doc.data['id'] ?? '',
+    );
+  }
+
+  bool searchCharacterWithName(String originalName, String inputName) {
+    final String lowerOriginalName = originalName.toLowerCase();
+    final String lowerInputName = inputName.toLowerCase();
+
+    final int firstOfInputName = lowerOriginalName.indexOf(lowerInputName);
+
+    if (firstOfInputName == -1) {
+      return false;
+    } else {
+      return true;
     }
   }
 

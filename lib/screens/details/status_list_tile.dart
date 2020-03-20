@@ -8,6 +8,8 @@ class StatusListTile extends StatelessWidget {
     final characterData = Provider.of<Character>(context) ??
         Character(cid: 0, name: '', skill: {}, ability: {});
 
+    List<Widget> statusList = List();
+
     // The entire multilevel list displayed by this app.
     final List<Entry> data = <Entry>[
       Entry(
@@ -51,9 +53,15 @@ class StatusListTile extends StatelessWidget {
       ),
     ];
 
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) => EntryItem(data[index]),
-      itemCount: data.length,
+    data.forEach((f) {
+      statusList.add(EntryItem(f));
+    });
+    return Center(
+      child: Wrap(
+        spacing: 8.0, // gap between adjacent chips
+        runSpacing: 4.0, // gap between lines
+        children: statusList,
+      ),
     );
   }
 }

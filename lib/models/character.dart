@@ -3,6 +3,7 @@ class Character {
   final String name;
   final Map ability;
   final Map skill;
+  final String comment;
 
-  Character({this.cid, this.name, this.ability, this.skill});
+  Character({this.cid, this.name, this.ability, this.skill, this.comment});
 }

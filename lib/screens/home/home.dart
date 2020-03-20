@@ -29,9 +29,7 @@ class _HomeState extends State<Home> {
               Text('Character List'),
               TextForm(),
               ChipsContainer(),
-              SingleChildScrollView(
-                child: CharacterList(),
-              ),
+              CharacterList(),
             ],
           ),
         ),

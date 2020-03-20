@@ -11,6 +11,11 @@ class DatabaseService {
   final CollectionReference characterCollection =
       Firestore.instance.collection('character');
 
+  final CollectionReference badgeCollection =
+      Firestore.instance.collection('badge');
+  final CollectionReference trophyCollection =
+      Firestore.instance.collection('trophy');
+
   // detail list from snapshot
   // ignore: missing_return
   List<Detail> _detailListFromSnapshot(QuerySnapshot snapshot) {
@@ -69,16 +74,21 @@ class DatabaseService {
   }
 
   // characterDara from snapshot
-  // まだ使ってない
-  CharacterData _characterDataFromSnapshot(DocumentSnapshot snapshot) {
-    return CharacterData(
-      uid: 'uid',
-      name: snapshot.data['name'],
-    );
-  }
-
-  Future<QuerySnapshot> get cid {
-    return characterCollection.getDocuments();
+  Character _characterDataFromSnapshot(DocumentSnapshot snapshot) {
+    return Character(
+        cid: snapshot.data['id'],
+        name: snapshot.data['name'],
+        ability: {
+              'ability_name': snapshot.data['ability']['ability_name'],
+              'ability_lv1': snapshot.data['ability']['ability_lv1'],
+              'ability_lv2': snapshot.data['ability']['ability_lv2'],
+              'ability_lv3': snapshot.data['ability']['ability_lv3'],
+            } ??
+            {},
+        skill: {
+          'skill_name': snapshot.data['skill']['skill_name'],
+          'skill_comment': snapshot.data['skill']['skill_comment'],
+        });
   }
 
   // get details stream
@@ -87,10 +97,9 @@ class DatabaseService {
   }
 
   // get character doc stream
-  // まだ使ってない
-  Stream<CharacterData> get characterData {
+  Stream<Character> characterData(String cid) {
     return characterCollection
-        .document()
+        .document(cid)
         .snapshots()
         .map(_characterDataFromSnapshot);
   }

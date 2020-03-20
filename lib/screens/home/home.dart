@@ -12,11 +12,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-//  final _searchItems = ValueNotifier<Condition>(new Condition()); // 検索している値の確認用
-//  Condition _searchItems; // 検索している値の確認用
-  Condition _searchItems = new Condition(); // 検索している値の確認用
-  final Character character = new Character();
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<Condition>(
@@ -35,8 +30,9 @@ class _HomeState extends State<Home> {
               Text('Character List'),
               TextForm(),
               ChipsContainer(),
-              CharacterList(),
-//              SampleText(),
+              SingleChildScrollView(
+                child: CharacterList(),
+              ),
             ],
           ),
         ),

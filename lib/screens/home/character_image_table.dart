@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shirodoraapp/models/detail.dart';
+import 'package:shirodoraapp/screens/details/details.dart';
+import 'package:shirodoraapp/screens/details/details_home.dart';
 
 class CharacterImageTable extends StatefulWidget {
   final List<Detail> characterList;
@@ -17,7 +19,11 @@ class _CharacterImageTableState extends State<CharacterImageTable> {
     widget.characterList.forEach((item) {
       images.add(GestureDetector(
         onTap: () {
-          print('${item.cid}');
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) {
+              return DetailsHome(cid: item.cid,);
+            }),
+          );
         },
         child: Image.asset(
           'assets/${item.cid}.png',
@@ -40,7 +46,7 @@ class _CharacterImageTableState extends State<CharacterImageTable> {
   }
 
   @override
-  void didUpdateWidget(Widget oldWidget){
+  void didUpdateWidget(Widget oldWidget) {
     super.didUpdateWidget(oldWidget);
     images.clear();
   }

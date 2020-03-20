@@ -1,12 +1,8 @@
 class Character {
-  final String uid;
-
-  Character({this.uid});
-}
-
-class CharacterData {
-  final String uid;
+  final int cid;
   final String name;
+  final Map ability;
+  final Map skill;
 
-  CharacterData({this.uid, this.name});
+  Character({this.cid, this.name, this.ability, this.skill});
 }

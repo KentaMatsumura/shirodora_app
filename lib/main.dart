@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shirodoraapp/screens/home/home.dart';
-import 'package:shirodoraapp/services/database.dart';
 
 void main() => runApp(MyApp());
 

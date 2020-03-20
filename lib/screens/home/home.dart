@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shirodoraapp/models/character.dart';
 import 'package:shirodoraapp/models/condition.dart';
 import 'package:shirodoraapp/screens/home/character_list.dart';
 import 'package:shirodoraapp/screens/home/chips_container.dart';

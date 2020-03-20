@@ -84,7 +84,12 @@ class DatabaseService {
               'ability_lv2': snapshot.data['ability']['ability_lv2'],
               'ability_lv3': snapshot.data['ability']['ability_lv3'],
             } ??
-            {},
+            {
+              'ability_name': '',
+              'ability_lv1': '',
+              'ability_lv2': '',
+              'ability_lv3': '',
+            },
         skill: {
           'skill_name': snapshot.data['skill']['skill_name'],
           'skill_comment': snapshot.data['skill']['skill_comment'],

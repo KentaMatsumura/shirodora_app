@@ -41,7 +41,6 @@ class Details extends StatelessWidget {
                 comment: characterData.comment,
                 cid: characterData.cid,
               ),
-              StatusListTile(),
             ],
           ),
         ),

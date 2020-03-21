@@ -37,13 +37,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-class SampleText extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var searchItems = Provider.of<Condition>(context);
-    return Center(
-      child: Text('${searchItems.cost}:::${searchItems.name}'),
-    );
-  }
-}

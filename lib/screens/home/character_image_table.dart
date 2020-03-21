@@ -21,7 +21,9 @@ class _CharacterImageTableState extends State<CharacterImageTable> {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
-              return DetailsHome(cid: item.cid,);
+              return DetailsHome(
+                cid: item.cid,
+              );
             }),
           );
         },

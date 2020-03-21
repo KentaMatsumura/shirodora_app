@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shirodoraapp/models/badge.dart';
+import 'package:shirodoraapp/screens/details/badge/badge_check_tile.dart';
 
 class BadgeListHome extends StatefulWidget {
   @override
@@ -8,6 +11,15 @@ class BadgeListHome extends StatefulWidget {
 class _BadgeListHomeState extends State<BadgeListHome> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final badgeData = Provider.of<Badge>(context);
+    try {
+      return BadgeCheckTile(
+        silver: badgeData.silver,
+        gold: badgeData.gold,
+        rainbow: badgeData.rainbow,
+      );
+    } catch (e) {
+      return Container();
+    }
   }
 }

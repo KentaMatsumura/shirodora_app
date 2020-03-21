@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shirodoraapp/models/badge.dart';
 import 'package:shirodoraapp/models/character.dart';
 import 'package:shirodoraapp/models/condition.dart';
 import 'package:shirodoraapp/models/detail.dart';
@@ -13,6 +14,7 @@ class DatabaseService {
 
   final CollectionReference badgeCollection =
       Firestore.instance.collection('badge');
+
   final CollectionReference trophyCollection =
       Firestore.instance.collection('trophy');
 
@@ -98,6 +100,18 @@ class DatabaseService {
     );
   }
 
+  Badge _badgeDataFromSnapshot(DocumentSnapshot snapshot) {
+    try {
+      return Badge(
+        silver: snapshot.data['silver'],
+        gold: snapshot.data['gold'],
+        rainbow: snapshot.data['rainbow'],
+      );
+    } catch (e) {
+      return new Badge();
+    }
+  }
+
   // get details stream
   Stream<List<Detail>> get details {
     return characterCollection.snapshots().map(_detailListFromSnapshot);
@@ -111,8 +125,11 @@ class DatabaseService {
         .map(_characterDataFromSnapshot);
   }
 
-  // 使ってない
-  Future getDocuments() async {
-    return await characterCollection.getDocuments();
+  // get badge doc stream
+  Stream<Badge> badgeData(String name) {
+    return badgeCollection
+        .document(name)
+        .snapshots()
+        .map(_badgeDataFromSnapshot);
   }
 }

@@ -35,7 +35,6 @@ class CharacterCard extends StatelessWidget {
             ),
           ),
           StatusListTile(),
-
         ],
       ),
     );

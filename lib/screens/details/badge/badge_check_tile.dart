@@ -19,51 +19,76 @@ class _BadgeCheckTileState extends State<BadgeCheckTile> {
 
   @override
   Widget build(BuildContext context) {
+    final badgeDataList = Provider.of<Badge>(context);
     return ChangeNotifierProvider<BadgeFlag>(
       create: (_) => flag,
       child: Column(
         children: <Widget>[
           Card(
+            color: Colors.cyan[100],
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
-                  title: Text('銅バッジ'),
+                  title: Text(
+                    '銅バッジ',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 BronzeCheckbox(),
               ],
             ),
           ),
           Card(
+            color: Colors.cyan[200],
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
-                  title: Text('銀バッジ'),
+                  title: Text(
+                    '銀バッジ',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-                SilverCheckbox(),
+                SilverCheckbox(
+                  silver: badgeDataList.silver,
+                ),
               ],
             ),
           ),
           Card(
+            color: Colors.cyan[300],
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
-                  title: Text('金バッジ'),
+                  title: Text(
+                    '金バッジ',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-                GoldCheckbox(),
+                GoldCheckbox(
+                  gold: badgeDataList.gold,
+                ),
               ],
             ),
           ),
           Card(
+            color: Colors.cyan[400],
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
-                  title: Text('虹バッジ'),
+                  title: Text(
+                    '虹バッジ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-                RainbowCheckbox(),
+                RainbowCheckbox(
+                  rainbow: badgeDataList.rainbow,
+                ),
               ],
             ),
           ),

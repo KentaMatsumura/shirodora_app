@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/badge.dart';
+import 'package:shirodoraapp/shared/custom_divider.dart';
 
 class BronzeCheckbox extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class _BronzeCheckboxState extends State<BronzeCheckbox> {
     var _flag = Provider.of<BadgeFlag>(context);
     return Column(
       children: <Widget>[
-        _customDivider(),
+        CustomDivider(),
         CheckboxListTile(
           activeColor: Colors.blue,
           title: Text('キャラクターLv1以上'),
@@ -46,18 +47,7 @@ class _SilverCheckboxState extends State<SilverCheckbox> {
     var _flag = Provider.of<BadgeFlag>(context);
     return Column(
       children: <Widget>[
-        _customDivider(),
-        CheckboxListTile(
-          activeColor: Colors.blue,
-          title: Text('キャラクターLv18以上'),
-          value: _flag.silverFlag,
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (bool e) {
-            setState(() {
-              _flag.setSilverFlag();
-            });
-          },
-        ),
+        CustomDivider(),
         CheckboxListTile(
           activeColor: Colors.blue,
           title: Text('キャラクターLv18以上'),
@@ -90,7 +80,7 @@ class _GoldCheckboxState extends State<GoldCheckbox> {
     var _flag = Provider.of<BadgeFlag>(context);
     return Column(
       children: <Widget>[
-        _customDivider(),
+        CustomDivider(),
         CheckboxListTile(
           activeColor: Colors.blue,
           title: Text('キャラクターLv27以上'),
@@ -123,7 +113,7 @@ class _RainbowCheckboxState extends State<RainbowCheckbox> {
     var _flag = Provider.of<BadgeFlag>(context);
     return Column(
       children: <Widget>[
-        _customDivider(),
+        CustomDivider(),
         CheckboxListTile(
           activeColor: Colors.blue,
           title: Text('キャラクターLv32以上'),
@@ -140,10 +130,3 @@ class _RainbowCheckboxState extends State<RainbowCheckbox> {
   }
 }
 
-Widget _customDivider() {
-  return Divider(
-    color: Colors.brown[50],
-    thickness: 2.0,
-    indent: 25.0,
-  );
-}

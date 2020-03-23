@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/badge.dart';
+import 'package:shirodoraapp/screens/details/details_home.dart';
 import 'package:shirodoraapp/shared/custom_divider.dart';
 
 class BronzeCheckbox extends StatefulWidget {
@@ -43,7 +44,6 @@ class SilverCheckbox extends StatefulWidget {
 class _SilverCheckboxState extends State<SilverCheckbox> {
   @override
   Widget build(BuildContext context) {
-    var list = new List.generate(widget.silver.length, (i) => false);
     var _flag = Provider.of<BadgeFlag>(context);
     return Column(
       children: <Widget>[
@@ -51,13 +51,37 @@ class _SilverCheckboxState extends State<SilverCheckbox> {
         CheckboxListTile(
           activeColor: Colors.blue,
           title: Text('キャラクターLv18以上'),
-          value: _flag.silverFlag,
+          value: _flag.silverLevelFlag,
           controlAffinity: ListTileControlAffinity.leading,
           onChanged: (bool e) {
             setState(() {
-              _flag.setSilverFlag();
+              _flag.setSilverLevelFlag();
             });
           },
+        ),
+        CustomDivider(),
+        CheckboxListTile(
+          activeColor: Colors.blue,
+          title: Text('${widget.silver['0']['name']}'),
+          value: _flag.silverChildFlag,
+          controlAffinity: ListTileControlAffinity.leading,
+          onChanged: (bool e) {
+            setState(() {
+              _flag.setSilverChildFlag();
+            });
+          },
+          secondary: IconButton(
+            icon: Icon(Icons.play_arrow),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) {
+                  return DetailsHome(
+                    cid: widget.silver['0']['id'],
+                  );
+                }),
+              );
+            },
+          ),
         ),
       ],
     );
@@ -76,7 +100,6 @@ class GoldCheckbox extends StatefulWidget {
 class _GoldCheckboxState extends State<GoldCheckbox> {
   @override
   Widget build(BuildContext context) {
-    var list = new List.generate(widget.gold.length, (i) => false);
     var _flag = Provider.of<BadgeFlag>(context);
     return Column(
       children: <Widget>[
@@ -84,16 +107,77 @@ class _GoldCheckboxState extends State<GoldCheckbox> {
         CheckboxListTile(
           activeColor: Colors.blue,
           title: Text('キャラクターLv27以上'),
-          value: _flag.goldFlag,
+          value: _flag.goldLevelFlag,
           controlAffinity: ListTileControlAffinity.leading,
           onChanged: (bool e) {
             setState(() {
-              _flag.setGoldFlag();
+              _flag.setGoldLevelFlag();
             });
           },
         ),
+        CustomDivider(),
+        _goldCharacterFirst(_flag),
+        CustomDivider(),
+        _goldCharacterSecond(_flag),
       ],
     );
+  }
+
+  Widget _goldCharacterFirst(BadgeFlag _flag) {
+    return CheckboxListTile(
+      activeColor: Colors.blue,
+      title: Text('${widget.gold['0']['name']}'),
+      value: _flag.goldChildFlag1,
+      controlAffinity: ListTileControlAffinity.leading,
+      onChanged: (bool e) {
+        setState(() {
+          _flag.setGoldChildFlag1();
+        });
+      },
+      secondary: IconButton(
+        icon: Icon(Icons.play_arrow),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) {
+              return DetailsHome(
+                cid: widget.gold['0']['id'],
+              );
+            }),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _goldCharacterSecond(BadgeFlag _flag) {
+    if (widget.gold.length == 1) {
+      _flag.setGoldChildFlag2();
+      return Container();
+    } else {
+      return CheckboxListTile(
+        activeColor: Colors.blue,
+        title: Text('${widget.gold['1']['name']}'),
+        value: _flag.goldChildFlag2,
+        controlAffinity: ListTileControlAffinity.leading,
+        onChanged: (bool e) {
+          setState(() {
+            _flag.setGoldChildFlag2();
+          });
+        },
+        secondary: IconButton(
+          icon: Icon(Icons.play_arrow),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return DetailsHome(
+                  cid: widget.gold['1']['id'],
+                );
+              }),
+            );
+          },
+        ),
+      );
+    }
   }
 }
 
@@ -109,7 +193,6 @@ class RainbowCheckbox extends StatefulWidget {
 class _RainbowCheckboxState extends State<RainbowCheckbox> {
   @override
   Widget build(BuildContext context) {
-    var list = new List.generate(widget.rainbow.length, (i) => false);
     var _flag = Provider.of<BadgeFlag>(context);
     return Column(
       children: <Widget>[
@@ -117,16 +200,76 @@ class _RainbowCheckboxState extends State<RainbowCheckbox> {
         CheckboxListTile(
           activeColor: Colors.blue,
           title: Text('キャラクターLv32以上'),
-          value: _flag.rainbowFlag,
+          value: _flag.rainbowLevelFlag,
           controlAffinity: ListTileControlAffinity.leading,
           onChanged: (bool e) {
             setState(() {
-              _flag.setRainbowFlag();
+              _flag.setRainbowLevelFlag();
             });
           },
         ),
+        CustomDivider(),
+        _goldCharacterFirst(_flag),
+        CustomDivider(),
+        _goldCharacterSecond(_flag),
       ],
     );
   }
-}
 
+  Widget _goldCharacterFirst(BadgeFlag _flag) {
+    return CheckboxListTile(
+      activeColor: Colors.blue,
+      title: Text('${widget.rainbow['0']['name']}'),
+      value: _flag.rainbowChildFlag1,
+      controlAffinity: ListTileControlAffinity.leading,
+      onChanged: (bool e) {
+        setState(() {
+          _flag.setRainbowChildFlag1();
+        });
+      },
+      secondary: IconButton(
+        icon: Icon(Icons.play_arrow),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) {
+              return DetailsHome(
+                cid: widget.rainbow['0']['id'],
+              );
+            }),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _goldCharacterSecond(BadgeFlag _flag) {
+    if (widget.rainbow.length == 1) {
+      _flag.setRainbowChildFlag2();
+      return Container();
+    } else {
+      return CheckboxListTile(
+        activeColor: Colors.blue,
+        title: Text('${widget.rainbow['1']['name']}'),
+        value: _flag.rainbowChildFlag2,
+        controlAffinity: ListTileControlAffinity.leading,
+        onChanged: (bool e) {
+          setState(() {
+            _flag.setRainbowChildFlag2();
+          });
+        },
+        secondary: IconButton(
+          icon: Icon(Icons.play_arrow),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return DetailsHome(
+                  cid: widget.rainbow['1']['id'],
+                );
+              }),
+            );
+          },
+        ),
+      );
+    }
+  }
+}

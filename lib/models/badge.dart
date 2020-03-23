@@ -22,34 +22,103 @@ class BadgeFlag with ChangeNotifier {
 
   bool get rainbowFlag => this._rainbowFlag;
 
+  bool _silverLevelFlag = false;
+  bool _silverChildFlag = false;
+
+  bool get silverLevelFlag => this._silverLevelFlag;
+
+  bool get silverChildFlag => this._silverChildFlag;
+
+  bool _goldLevelFlag = false;
+  bool _goldChildFlag1 = false;
+  bool _goldChildFlag2 = false;
+
+  bool get goldLevelFlag => _goldLevelFlag;
+
+  bool get goldChildFlag1 => _goldChildFlag1;
+
+  bool get goldChildFlag2 => _goldChildFlag2;
+
+  bool _rainbowLevelFlag = false;
+  bool _rainbowChildFlag1 = false;
+  bool _rainbowChildFlag2 = false;
+
+  bool get rainbowLevelFlag => _rainbowLevelFlag;
+
+  bool get rainbowChildFlag1 => _rainbowChildFlag1;
+
+  bool get rainbowChildFlag2 => _rainbowChildFlag2;
+
   setBronzeFlag() {
     _bronzeFlag = !_bronzeFlag;
     notifyListeners();
   }
 
+  setSilverLevelFlag() {
+    _silverLevelFlag = !_silverLevelFlag;
+    setSilverFlag();
+  }
+
+  setSilverChildFlag() {
+    _silverChildFlag = !_silverChildFlag;
+    setSilverFlag();
+  }
+
   setSilverFlag() {
-    _silverFlag = !_silverFlag;
-    if (_silverFlag) {
-      _bronzeFlag = true;
+    if (_silverLevelFlag && _silverChildFlag) {
+      _silverFlag = true;
+    } else {
+      _silverFlag = false;
     }
     notifyListeners();
+  }
+
+  setGoldLevelFlag() {
+    _goldLevelFlag = !_goldLevelFlag;
+    setGoldFlag();
+  }
+
+  setGoldChildFlag1() {
+    _goldChildFlag1 = !_goldChildFlag1;
+    setGoldFlag();
+  }
+
+  setGoldChildFlag2() {
+    _goldChildFlag2 = !_goldChildFlag2;
+    setGoldFlag();
   }
 
   setGoldFlag() {
-    _goldFlag = !_goldFlag;
-    if (_goldFlag) {
-      _bronzeFlag = true;
+    if (_goldLevelFlag && _goldChildFlag1 && _goldChildFlag2) {
+      _goldFlag = true;
       _silverFlag = true;
+    } else {
+      _goldFlag = false;
     }
+
     notifyListeners();
   }
 
+  setRainbowLevelFlag() {
+    _rainbowLevelFlag = !_rainbowLevelFlag;
+    setRainbowFlag();
+  }
+
+  setRainbowChildFlag1() {
+    _rainbowChildFlag1 = !_rainbowChildFlag1;
+    setRainbowFlag();
+  }
+
+  setRainbowChildFlag2() {
+    _rainbowChildFlag2 = !_rainbowChildFlag2;
+    setRainbowFlag();
+  }
+
   setRainbowFlag() {
-    _rainbowFlag = !_rainbowFlag;
-    if (_rainbowFlag) {
-      _bronzeFlag = true;
-      _silverFlag = true;
-      _goldFlag = true;
+    if (_rainbowLevelFlag && _rainbowChildFlag1 && _rainbowChildFlag2) {
+      _rainbowFlag = !_rainbowFlag;
+    } else {
+      _rainbowFlag = false;
     }
     notifyListeners();
   }

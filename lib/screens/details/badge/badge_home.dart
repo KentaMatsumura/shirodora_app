@@ -19,7 +19,9 @@ class _BadgeListHomeState extends State<BadgeListHome> {
         rainbow: badgeData.rainbow,
       );
     } catch (e) {
-      return Container();
+      return Container(
+        child: Text('$e'),
+      );
     }
   }
 }

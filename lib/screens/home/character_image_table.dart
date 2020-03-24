@@ -18,9 +18,6 @@ class _CharacterImageTableState extends State<CharacterImageTable> {
     widget.characterList.forEach((item) {
       images.add(GestureDetector(
         onTap: () {
-          print('=======================');
-          print('~~~~~~${item.cid}~~~~~~');
-          print('=======================');
           Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
               return DetailsHome(

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/character.dart';
 import 'package:shirodoraapp/screens/details/badge/badge_home.dart';
-import 'package:shirodoraapp/screens/details/badge/need_character_list.dart';
+import 'package:shirodoraapp/screens/details/need_character_list.dart';
 import 'package:shirodoraapp/screens/details/character_card.dart';
 import 'package:shirodoraapp/screens/details/setting_home.dart';
+import 'package:shirodoraapp/screens/details/trophy/trophy_home.dart';
 import 'package:shirodoraapp/services/database.dart';
 
 class Details extends StatelessWidget {
@@ -74,6 +75,7 @@ class Details extends StatelessWidget {
                 ),
                 NeedCharacterList(),
                 BadgeListHome(),
+                TrophyListHome(),
               ],
             ),
           ),

@@ -18,6 +18,8 @@ class Details extends StatelessWidget {
         providers: [
           StreamProvider.value(
               value: DatabaseService().badgeData(characterData.name)),
+          StreamProvider.value(
+              value: DatabaseService().trophyData(characterData.name)),
         ],
         child: Container(
           child: Scaffold(
@@ -48,6 +50,8 @@ class Details extends StatelessWidget {
         providers: [
           StreamProvider.value(
               value: DatabaseService().badgeData(characterData.name)),
+          StreamProvider.value(
+              value: DatabaseService().trophyData(characterData.name)),
         ],
         child: Container(
           child: Scaffold(

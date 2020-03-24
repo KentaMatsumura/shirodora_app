@@ -51,7 +51,6 @@ class BadgeFlag with ChangeNotifier {
 
   setBronzeFlag() {
     _bronzeFlag = !_bronzeFlag;
-//    notifyListeners();
   }
 
   setSilverLevelFlag() {
@@ -70,7 +69,6 @@ class BadgeFlag with ChangeNotifier {
     } else {
       _silverFlag = false;
     }
-//    notifyListeners();
   }
 
   setGoldLevelFlag() {
@@ -91,12 +89,9 @@ class BadgeFlag with ChangeNotifier {
   setGoldFlag() {
     if (_goldLevelFlag && _goldChildFlag1 && _goldChildFlag2) {
       _goldFlag = true;
-      _silverFlag = true;
     } else {
       _goldFlag = false;
     }
-
-//    notifyListeners();
   }
 
   setRainbowLevelFlag() {
@@ -120,6 +115,5 @@ class BadgeFlag with ChangeNotifier {
     } else {
       _rainbowFlag = false;
     }
-//    notifyListeners();
   }
 }

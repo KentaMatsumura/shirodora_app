@@ -3,6 +3,7 @@ import 'package:shirodoraapp/models/badge.dart';
 import 'package:shirodoraapp/models/character.dart';
 import 'package:shirodoraapp/models/condition.dart';
 import 'package:shirodoraapp/models/detail.dart';
+import 'package:shirodoraapp/models/trophy.dart';
 
 class DatabaseService {
   final Condition searchItems;
@@ -130,6 +131,17 @@ class DatabaseService {
     }
   }
 
+  Trophy _trophyDataFromSnapshot(DocumentSnapshot snapshot) {
+    try {
+      return Trophy(
+        d2: snapshot.data['d2_trophy'],
+        d1: snapshot.data['d1_trophy'],
+      );
+    } catch (e) {
+      return new Trophy();
+    }
+  }
+
   // get details stream
   Stream<List<Detail>> get details {
     return characterCollection.snapshots().map(_detailListFromSnapshot);
@@ -149,5 +161,13 @@ class DatabaseService {
         .document(name)
         .snapshots()
         .map(_badgeDataFromSnapshot);
+  }
+
+  // get trophy doc stream
+  Stream<Trophy> trophyData(String name) {
+    return trophyCollection
+        .document(name)
+        .snapshots()
+        .map(_trophyDataFromSnapshot);
   }
 }

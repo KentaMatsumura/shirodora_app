@@ -60,31 +60,40 @@ class _SilverCheckboxState extends State<SilverCheckbox> {
           },
         ),
         CustomDivider(),
-        CheckboxListTile(
-          activeColor: Colors.blue,
-          title: Text('${widget.silver['0']['name']}'),
-          value: _flag.silverChildFlag,
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (bool e) {
-            setState(() {
-              _flag.setSilverChildFlag();
-            });
-          },
-          secondary: IconButton(
-            icon: Icon(Icons.play_arrow),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) {
-                  return DetailsHome(
-                    cid: widget.silver['0']['id'],
-                  );
-                }),
-              );
-            },
-          ),
-        ),
+        _silverCharacterFirst(_flag),
       ],
     );
+  }
+
+  Widget _silverCharacterFirst(BadgeFlag _flag) {
+    if (widget.silver['0']['name'] == '-') {
+      _flag.setSilverChildFlag();
+      return Container(child: Text('未実装'));
+    } else {
+      return CheckboxListTile(
+        activeColor: Colors.blue,
+        title: Text('${widget.silver['0']['name']}'),
+        value: _flag.silverChildFlag,
+        controlAffinity: ListTileControlAffinity.leading,
+        onChanged: (bool e) {
+          setState(() {
+            _flag.setSilverChildFlag();
+          });
+        },
+        secondary: IconButton(
+          icon: Icon(Icons.play_arrow),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return DetailsHome(
+                  cid: widget.silver['0']['id'],
+                );
+              }),
+            );
+          },
+        ),
+      );
+    }
   }
 }
 

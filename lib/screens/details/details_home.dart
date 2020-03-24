@@ -12,7 +12,7 @@ class DetailsHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<Character>.value(
-      value: DatabaseService().characterData(cid.toString()),
+      value: DatabaseService().characterData(cid),
       child: Details(),
     );
   }

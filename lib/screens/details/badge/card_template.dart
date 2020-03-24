@@ -124,29 +124,34 @@ class _GoldCheckboxState extends State<GoldCheckbox> {
   }
 
   Widget _goldCharacterFirst(BadgeFlag _flag) {
-    return CheckboxListTile(
-      activeColor: Colors.blue,
-      title: Text('${widget.gold['0']['name']}'),
-      value: _flag.goldChildFlag1,
-      controlAffinity: ListTileControlAffinity.leading,
-      onChanged: (bool e) {
-        setState(() {
-          _flag.setGoldChildFlag1();
-        });
-      },
-      secondary: IconButton(
-        icon: Icon(Icons.play_arrow),
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) {
-              return DetailsHome(
-                cid: widget.gold['0']['id'],
-              );
-            }),
-          );
+    if (widget.gold['0']['name'] == '-') {
+      _flag.setGoldChildFlag1();
+      return Container(child: Text('未実装'));
+    } else {
+      return CheckboxListTile(
+        activeColor: Colors.blue,
+        title: Text('${widget.gold['0']['name']}'),
+        value: _flag.goldChildFlag1,
+        controlAffinity: ListTileControlAffinity.leading,
+        onChanged: (bool e) {
+          setState(() {
+            _flag.setGoldChildFlag1();
+          });
         },
-      ),
-    );
+        secondary: IconButton(
+          icon: Icon(Icons.play_arrow),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return DetailsHome(
+                  cid: widget.gold['0']['id'],
+                );
+              }),
+            );
+          },
+        ),
+      );
+    }
   }
 
   Widget _goldCharacterSecond(BadgeFlag _flag) {
@@ -209,40 +214,47 @@ class _RainbowCheckboxState extends State<RainbowCheckbox> {
           },
         ),
         CustomDivider(),
-        _goldCharacterFirst(_flag),
+        _rainbowCharacterFirst(_flag),
         CustomDivider(),
-        _goldCharacterSecond(_flag),
+        _rainbowCharacterSecond(_flag),
       ],
     );
   }
 
-  Widget _goldCharacterFirst(BadgeFlag _flag) {
-    return CheckboxListTile(
-      activeColor: Colors.blue,
-      title: Text('${widget.rainbow['0']['name']}'),
-      value: _flag.rainbowChildFlag1,
-      controlAffinity: ListTileControlAffinity.leading,
-      onChanged: (bool e) {
-        setState(() {
-          _flag.setRainbowChildFlag1();
-        });
-      },
-      secondary: IconButton(
-        icon: Icon(Icons.play_arrow),
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) {
-              return DetailsHome(
-                cid: widget.rainbow['0']['id'],
-              );
-            }),
-          );
+  Widget _rainbowCharacterFirst(BadgeFlag _flag) {
+    if (widget.rainbow['0']['name'] == '-') {
+      _flag.setRainbowChildFlag1();
+      return Container(
+        child: Text('未実装'),
+      );
+    } else {
+      return CheckboxListTile(
+        activeColor: Colors.blue,
+        title: Text('${widget.rainbow['0']['name']}'),
+        value: _flag.rainbowChildFlag1,
+        controlAffinity: ListTileControlAffinity.leading,
+        onChanged: (bool e) {
+          setState(() {
+            _flag.setRainbowChildFlag1();
+          });
         },
-      ),
-    );
+        secondary: IconButton(
+          icon: Icon(Icons.play_arrow),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) {
+                return DetailsHome(
+                  cid: widget.rainbow['0']['id'],
+                );
+              }),
+            );
+          },
+        ),
+      );
+    }
   }
 
-  Widget _goldCharacterSecond(BadgeFlag _flag) {
+  Widget _rainbowCharacterSecond(BadgeFlag _flag) {
     if (widget.rainbow.length == 1) {
       _flag.setRainbowChildFlag2();
       return Container();

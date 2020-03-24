@@ -77,27 +77,45 @@ class DatabaseService {
 
   // characterDara from snapshot
   Character _characterDataFromSnapshot(DocumentSnapshot snapshot) {
-    return Character(
-      cid: snapshot.data['id'],
-      name: snapshot.data['name'],
-      ability: {
-            'ability_name': snapshot.data['ability']['ability_name'],
-            'ability_lv1': snapshot.data['ability']['ability_lv1'],
-            'ability_lv2': snapshot.data['ability']['ability_lv2'],
-            'ability_lv3': snapshot.data['ability']['ability_lv3'],
-          } ??
-          {
-            'ability_name': '',
-            'ability_lv1': '',
-            'ability_lv2': '',
-            'ability_lv3': '',
-          },
-      skill: {
-        'skill_name': snapshot.data['skill']['skill_name'],
-        'skill_comment': snapshot.data['skill']['skill_comment'],
-      },
-      comment: snapshot.data['comment'],
-    );
+    if (snapshot.data['ability'] == 'Nothing') {
+      return Character(
+        cid: snapshot.data['id'],
+        name: snapshot.data['name'],
+        ability: {
+          'ability_name': '',
+          'ability_lv1': '',
+          'ability_lv2': '',
+          'ability_lv3': '',
+        },
+        skill: {
+          'skill_name': snapshot.data['skill']['skill_name'],
+          'skill_comment': snapshot.data['skill']['skill_comment'],
+        },
+        comment: snapshot.data['comment'],
+      );
+    } else {
+      return Character(
+        cid: snapshot.data['id'],
+        name: snapshot.data['name'],
+        ability: {
+              'ability_name': snapshot.data['ability']['ability_name'],
+              'ability_lv1': snapshot.data['ability']['ability_lv1'],
+              'ability_lv2': snapshot.data['ability']['ability_lv2'],
+              'ability_lv3': snapshot.data['ability']['ability_lv3'],
+            } ??
+            {
+              'ability_name': '',
+              'ability_lv1': '',
+              'ability_lv2': '',
+              'ability_lv3': '',
+            },
+        skill: {
+          'skill_name': snapshot.data['skill']['skill_name'],
+          'skill_comment': snapshot.data['skill']['skill_comment'],
+        },
+        comment: snapshot.data['comment'],
+      );
+    }
   }
 
   Badge _badgeDataFromSnapshot(DocumentSnapshot snapshot) {
@@ -118,9 +136,9 @@ class DatabaseService {
   }
 
   // get character doc stream
-  Stream<Character> characterData(String cid) {
+  Stream<Character> characterData(int cid) {
     return characterCollection
-        .document(cid)
+        .document(cid.toString())
         .snapshots()
         .map(_characterDataFromSnapshot);
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shirodoraapp/models/detail.dart';
-import 'package:shirodoraapp/screens/details/details.dart';
 import 'package:shirodoraapp/screens/details/details_home.dart';
 
 class CharacterImageTable extends StatefulWidget {
@@ -19,6 +18,9 @@ class _CharacterImageTableState extends State<CharacterImageTable> {
     widget.characterList.forEach((item) {
       images.add(GestureDetector(
         onTap: () {
+          print('=======================');
+          print('~~~~~~${item.cid}~~~~~~');
+          print('=======================');
           Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
               return DetailsHome(

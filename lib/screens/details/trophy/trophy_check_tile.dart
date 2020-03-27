@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/trophy.dart';
 import 'package:shirodoraapp/screens/details/trophy/card_template.dart';
+import 'package:shirodoraapp/shared/loading.dart';
 
 class TrophyCheckTile extends StatefulWidget {
   final Map d2;
   final Map d1;
+  final bool d0;
 
-  TrophyCheckTile({this.d2, this.d1});
+  TrophyCheckTile({this.d2, this.d1, this.d0});
 
   @override
   _TrophyCheckTileState createState() => _TrophyCheckTileState();
@@ -19,7 +21,9 @@ class _TrophyCheckTileState extends State<TrophyCheckTile> {
   @override
   Widget build(BuildContext context) {
     final trophyDataList = Provider.of<Trophy>(context) ?? Trophy();
-    try {
+    if (trophyDataList == null) {
+      return Loading();
+    } else {
       return ChangeNotifierProvider<TrophyFlag>(
         create: (_) => flag,
         child: Column(
@@ -80,16 +84,12 @@ class _TrophyCheckTileState extends State<TrophyCheckTile> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  D0CheckBox(),
+                  D0CheckBox(d0: widget.d0),
                 ],
               ),
             ),
           ],
         ),
-      );
-    } catch (e) {
-      return Container(
-        child: Text('$e'),
       );
     }
   }

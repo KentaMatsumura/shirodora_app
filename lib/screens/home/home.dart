@@ -4,6 +4,7 @@ import 'package:shirodoraapp/models/condition.dart';
 import 'package:shirodoraapp/screens/home/character_list.dart';
 import 'package:shirodoraapp/screens/home/chips_container.dart';
 import 'package:shirodoraapp/screens/home/text_form.dart';
+import 'package:shirodoraapp/shared/loading.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,29 +12,34 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<Condition>(
-      create: (_) => Condition(),
-      child: Container(
-        child: Scaffold(
-          backgroundColor: Colors.brown[50],
-          appBar: AppBar(
-            title: Text('Shirodora App Home'),
-            backgroundColor: Colors.brown[400],
-            elevation: 0.0,
-          ),
-          body: ListView(
-            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-            children: <Widget>[
-              Text('Character List'),
-              TextForm(),
-              ChipsContainer(),
-              CharacterList(),
-            ],
+    try {
+      return ChangeNotifierProvider<Condition>(
+        create: (_) => Condition(),
+        child: Container(
+          child: Scaffold(
+            backgroundColor: Colors.brown[50],
+            appBar: AppBar(
+              title: Text('Shirodora App Home'),
+              backgroundColor: Colors.brown[400],
+              elevation: 0.0,
+            ),
+            body: ListView(
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+              children: <Widget>[
+                Text('Character List'),
+                TextForm(),
+                ChipsContainer(),
+                CharacterList(),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }catch(e){
+      return Loading();
+    }
   }
 }

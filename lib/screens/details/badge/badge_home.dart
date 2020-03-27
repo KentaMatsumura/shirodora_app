@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/badge.dart';
 import 'package:shirodoraapp/screens/details/badge/badge_check_tile.dart';
+import 'package:shirodoraapp/shared/loading.dart';
 
 class BadgeListHome extends StatefulWidget {
   @override
@@ -19,9 +20,7 @@ class _BadgeListHomeState extends State<BadgeListHome> {
         rainbow: badgeData.rainbow,
       );
     } catch (e) {
-      return Container(
-        child: Text('$e'),
-      );
+      return Loading();
     }
   }
 }

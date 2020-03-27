@@ -136,6 +136,7 @@ class DatabaseService {
       return Trophy(
         d2: snapshot.data['d2_trophy'],
         d1: snapshot.data['d1_trophy'],
+        d0: snapshot.data['d0_trophy']['Implemented'],
       );
     } catch (e) {
       return new Trophy();

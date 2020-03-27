@@ -3,27 +3,20 @@ import 'package:flutter/material.dart';
 class Trophy {
   final Map d2;
   final Map d1;
+  final bool d0;
 
-  Trophy({this.d2, this.d1});
+  Trophy({this.d2, this.d1, this.d0});
 }
 
 class TrophyFlag with ChangeNotifier {
-  bool _d3Flag = false;
-  bool _d2Flag = false;
-  bool _d1Flag = false;
-  bool _d0Flag = false;
+  bool _d3LevelFlag = false;
 
-  bool get d3Flag => this._d3Flag;
-
-  bool get d2Flag => this._d2Flag;
-
-  bool get d1Flag => this._d1Flag;
-
-  bool get d0Flag => this._d0Flag;
+  bool get d3Flag => this._d3LevelFlag;
 
   bool _d2LevelFlag = false;
   bool _d2ChildFlag1 = false;
   bool _d2ChildFlag2 = false;
+  bool _d2UmapFlag = false;
 
   bool get d2LevelFlag => this._d2LevelFlag;
 
@@ -31,9 +24,12 @@ class TrophyFlag with ChangeNotifier {
 
   bool get d2ChildFlag2 => this._d2ChildFlag2;
 
+  bool get d2UmapFlag => _d2UmapFlag;
+
   bool _d1LevelFlag = false;
   bool _d1ChildFlag1 = false;
   bool _d1ChildFlag2 = false;
+  bool _d1UmapFlag = false;
 
   bool get d1LevelFlag => _d1LevelFlag;
 
@@ -41,15 +37,21 @@ class TrophyFlag with ChangeNotifier {
 
   bool get d1ChildFlag2 => _d1ChildFlag2;
 
+  bool get d1UmapFlag => _d1UmapFlag;
+
   bool _d0LevelFlag = false;
   bool _d0SkillFlag = false;
+  bool _d0UmapFlag = false;
 
   bool get d0LevelFlag => _d0LevelFlag;
 
   bool get d0SkillFlag => _d0SkillFlag;
 
+  bool get d0UmapFlag => _d0UmapFlag;
+
+  // Meet the d3 condition
   setD3Flag() {
-    _d3Flag = !_d3Flag;
+    _d3LevelFlag = !_d3LevelFlag;
   }
 
   setD2LevelFlag() {
@@ -67,12 +69,15 @@ class TrophyFlag with ChangeNotifier {
     setD2Flag();
   }
 
+  setD2UmapFlag() {
+    _d2UmapFlag = !_d2UmapFlag;
+    setD2Flag();
+  }
+
+  // Meet the d2 condition
   setD2Flag() {
-    if (_d2LevelFlag && _d2ChildFlag1 && _d2ChildFlag2) {
-      _d2Flag = true;
-    } else {
-      _d2Flag = false;
-    }
+    if (_d2LevelFlag && _d2ChildFlag1 && _d2ChildFlag2 && _d2UmapFlag) {
+    } else {}
   }
 
   setD1LevelFlag() {
@@ -90,12 +95,15 @@ class TrophyFlag with ChangeNotifier {
     setD1Flag();
   }
 
+  setD1UmapFlag() {
+    _d1UmapFlag = !_d1UmapFlag;
+    setD1Flag();
+  }
+
+  // Meet the d1 condition
   setD1Flag() {
-    if (_d1LevelFlag && _d1ChildFlag1 && _d1ChildFlag2) {
-      _d1Flag = true;
-    } else {
-      _d1Flag = false;
-    }
+    if (_d1LevelFlag && _d1ChildFlag1 && _d1ChildFlag2 && _d1UmapFlag) {
+    } else {}
   }
 
   setD0LevelFlag() {
@@ -108,11 +116,14 @@ class TrophyFlag with ChangeNotifier {
     setD0Flag();
   }
 
+  setD0UmapFlag() {
+    _d0UmapFlag = !_d0UmapFlag;
+    setD0Flag();
+  }
+
+  // Meet the d0 condition
   setD0Flag() {
-    if (_d0LevelFlag && _d0SkillFlag) {
-      _d0Flag = !_d0Flag;
-    } else {
-      _d0Flag = false;
-    }
+    if (_d0LevelFlag && _d0SkillFlag && _d0UmapFlag) {
+    } else {}
   }
 }

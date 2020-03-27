@@ -61,6 +61,18 @@ class _D2CheckBoxState extends State<D2CheckBox> {
           },
         ),
         CustomDivider(),
+        CheckboxListTile(
+          activeColor: Colors.orange,
+          title: Text('うまP200以上'),
+          value: _flag.d2UmapFlag,
+          controlAffinity: ListTileControlAffinity.leading,
+          onChanged: (bool e) {
+            setState(() {
+              _flag.setD2UmapFlag();
+            });
+          },
+        ),
+        CustomDivider(),
         _d2CharacterFirst(_flag),
         CustomDivider(),
         _d2CharacterSecond(_flag),
@@ -159,6 +171,18 @@ class _D1CheckBoxState extends State<D1CheckBox> {
           },
         ),
         CustomDivider(),
+        CheckboxListTile(
+          activeColor: Colors.orange,
+          title: Text('うまP800以上'),
+          value: _flag.d1UmapFlag,
+          controlAffinity: ListTileControlAffinity.leading,
+          onChanged: (bool e) {
+            setState(() {
+              _flag.setD1UmapFlag();
+            });
+          },
+        ),
+        CustomDivider(),
         _d1CharacterFirst(_flag),
         CustomDivider(),
         _d1CharacterSecond(_flag),
@@ -230,7 +254,7 @@ class _D1CheckBoxState extends State<D1CheckBox> {
 }
 
 class D0CheckBox extends StatefulWidget {
-  final Map d0;
+  final bool d0;
 
   D0CheckBox({this.d0});
 
@@ -242,33 +266,59 @@ class _D0CheckBoxState extends State<D0CheckBox> {
   @override
   Widget build(BuildContext context) {
     var _flag = Provider.of<TrophyFlag>(context);
-    return Column(
-      children: <Widget>[
-        CustomDivider(),
-        CheckboxListTile(
-          activeColor: Colors.orange,
-          title: Text('キャラクターLv30以上'),
-          value: _flag.d0LevelFlag,
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (bool e) {
-            setState(() {
-              _flag.setD0LevelFlag();
-            });
-          },
-        ),
-        CustomDivider(),
-        CheckboxListTile(
-          activeColor: Colors.orange,
-          title: Text('スキルLv10以上'),
-          value: _flag.d0SkillFlag,
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (bool e) {
-            setState(() {
-              _flag.setD0SkillFlag();
-            });
-          },
-        ),
-      ],
-    );
+    if (widget.d0){
+      return Column(
+        children: <Widget>[
+          CustomDivider(),
+          CheckboxListTile(
+            activeColor: Colors.orange,
+            title: Text('キャラクターLv30以上'),
+            value: _flag.d0LevelFlag,
+            controlAffinity: ListTileControlAffinity.leading,
+            onChanged: (bool e) {
+              setState(() {
+                _flag.setD0LevelFlag();
+              });
+            },
+          ),
+          CustomDivider(),
+          CheckboxListTile(
+            activeColor: Colors.orange,
+            title: Text('スキルLv10以上'),
+            value: _flag.d0SkillFlag,
+            controlAffinity: ListTileControlAffinity.leading,
+            onChanged: (bool e) {
+              setState(() {
+                _flag.setD0SkillFlag();
+              });
+            },
+          ),
+          CustomDivider(),
+          CheckboxListTile(
+            activeColor: Colors.orange,
+            title: Text('うまP1400以上'),
+            value: _flag.d0UmapFlag,
+            controlAffinity: ListTileControlAffinity.leading,
+            onChanged: (bool e) {
+              setState(() {
+                _flag.setD0UmapFlag();
+              });
+            },
+          ),
+        ],
+      );
+    }
+    else{
+      _flag.setD0SkillFlag();
+      _flag.setD0LevelFlag();
+      _flag.setD0UmapFlag();
+      return Column(
+        children: <Widget>[
+          CustomDivider(),
+          Container(child: Text('未実装')),
+          CustomDivider(),
+        ],
+      );
+    }
   }
 }

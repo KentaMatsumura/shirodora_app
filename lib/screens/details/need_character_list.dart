@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/badge.dart';
 import 'package:shirodoraapp/models/trophy.dart';
 import 'package:shirodoraapp/screens/details/details_home.dart';
+import 'package:shirodoraapp/shared/loading.dart';
 
 class NeedCharacterList extends StatelessWidget {
   @override
@@ -37,21 +38,31 @@ class BuildCharacterIcon extends StatefulWidget {
 class _BuildCharacterIconState extends State<BuildCharacterIcon> {
   _buildCharacterIcon(Badge badge, Trophy trophy) {
     List<Widget> list = List();
-    badge.silver.forEach((k, v) {
-      list.add(BuildGestureDetector(k: k, v: v));
-    });
-    badge.gold.forEach((k, v) {
-      list.add(BuildGestureDetector(k: k, v: v));
-    });
-    badge.rainbow.forEach((k, v) {
-      list.add(BuildGestureDetector(k: k, v: v));
-    });
-    trophy.d2.forEach((k, v) {
-      list.add(BuildGestureDetector(k: k, v: v));
-    });
-    trophy.d1.forEach((k, v) {
-      list.add(BuildGestureDetector(k: k, v: v));
-    });
+    if (badge.silver != null) {
+      badge.silver.forEach((k, v) {
+        list.add(BuildGestureDetector(k: k, v: v));
+      });
+    }
+    if (badge.gold != null) {
+      badge.gold.forEach((k, v) {
+        list.add(BuildGestureDetector(k: k, v: v));
+      });
+    }
+    if (badge.rainbow != null) {
+      badge.rainbow.forEach((k, v) {
+        list.add(BuildGestureDetector(k: k, v: v));
+      });
+    }
+    if (trophy.d2 != null) {
+      trophy.d2.forEach((k, v) {
+        list.add(BuildGestureDetector(k: k, v: v));
+      });
+    }
+    if (trophy.d1 != null) {
+      trophy.d1.forEach((k, v) {
+        list.add(BuildGestureDetector(k: k, v: v));
+      });
+    }
     return list;
   }
 

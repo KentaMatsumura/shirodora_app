@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shirodoraapp/models/detail.dart';
 import 'package:shirodoraapp/screens/details/details_home.dart';
+import 'package:shirodoraapp/shared/loading.dart';
 
 class CharacterImageTable extends StatefulWidget {
   final List<Detail> characterList;
@@ -37,13 +38,17 @@ class _CharacterImageTableState extends State<CharacterImageTable> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Wrap(
-        spacing: 8.0, // gap between adjacent chips
-        runSpacing: 4.0, // gap between lines
-        children: _buildImage(),
-      ),
-    );
+    try {
+      return Center(
+        child: Wrap(
+          spacing: 8.0, // gap between adjacent chips
+          runSpacing: 4.0, // gap between lines
+          children: _buildImage(),
+        ),
+      );
+    } catch (e) {
+      return Loading();
+    }
   }
 
   @override

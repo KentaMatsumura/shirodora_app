@@ -223,6 +223,18 @@ class _RainbowCheckboxState extends State<RainbowCheckbox> {
           },
         ),
         CustomDivider(),
+        CheckboxListTile(
+          activeColor: Colors.blue,
+          title: Text('アビリティLv3以上'),
+          value: _flag.rainbowAbilityFlag,
+          controlAffinity: ListTileControlAffinity.leading,
+          onChanged: (bool e) {
+            setState(() {
+              _flag.setRainbowAbilityFlag();
+            });
+          },
+        ),
+        CustomDivider(),
         _rainbowCharacterFirst(_flag),
         CustomDivider(),
         _rainbowCharacterSecond(_flag),

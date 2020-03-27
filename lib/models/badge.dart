@@ -9,18 +9,9 @@ class Badge {
 }
 
 class BadgeFlag with ChangeNotifier {
-  bool _bronzeFlag = false;
-  bool _silverFlag = false;
-  bool _goldFlag = false;
-  bool _rainbowFlag = false;
+  bool _bronzeLevelFlag = false;
 
-  bool get bronzeFlag => this._bronzeFlag;
-
-  bool get silverFlag => this._silverFlag;
-
-  bool get goldFlag => this._goldFlag;
-
-  bool get rainbowFlag => this._rainbowFlag;
+  bool get bronzeFlag => this._bronzeLevelFlag;
 
   bool _silverLevelFlag = false;
   bool _silverChildFlag = false;
@@ -42,6 +33,7 @@ class BadgeFlag with ChangeNotifier {
   bool _rainbowLevelFlag = false;
   bool _rainbowChildFlag1 = false;
   bool _rainbowChildFlag2 = false;
+  bool _rainbowAbilityFlag = false;
 
   bool get rainbowLevelFlag => _rainbowLevelFlag;
 
@@ -49,8 +41,11 @@ class BadgeFlag with ChangeNotifier {
 
   bool get rainbowChildFlag2 => _rainbowChildFlag2;
 
+  bool get rainbowAbilityFlag => _rainbowAbilityFlag;
+
+  // Meet the bronze flag
   setBronzeFlag() {
-    _bronzeFlag = !_bronzeFlag;
+    _bronzeLevelFlag = !_bronzeLevelFlag;
   }
 
   setSilverLevelFlag() {
@@ -63,12 +58,10 @@ class BadgeFlag with ChangeNotifier {
     setSilverFlag();
   }
 
+  // Meet the silver conditions
   setSilverFlag() {
     if (_silverLevelFlag && _silverChildFlag) {
-      _silverFlag = true;
-    } else {
-      _silverFlag = false;
-    }
+    } else {}
   }
 
   setGoldLevelFlag() {
@@ -86,12 +79,10 @@ class BadgeFlag with ChangeNotifier {
     setGoldFlag();
   }
 
+  // Meet the gold conditions
   setGoldFlag() {
     if (_goldLevelFlag && _goldChildFlag1 && _goldChildFlag2) {
-      _goldFlag = true;
-    } else {
-      _goldFlag = false;
-    }
+    } else {}
   }
 
   setRainbowLevelFlag() {
@@ -109,11 +100,17 @@ class BadgeFlag with ChangeNotifier {
     setRainbowFlag();
   }
 
+  setRainbowAbilityFlag() {
+    _rainbowAbilityFlag = !_rainbowAbilityFlag;
+    setRainbowFlag();
+  }
+
+  // Meet the rainbow conditions
   setRainbowFlag() {
-    if (_rainbowLevelFlag && _rainbowChildFlag1 && _rainbowChildFlag2) {
-      _rainbowFlag = !_rainbowFlag;
-    } else {
-      _rainbowFlag = false;
-    }
+    if (_rainbowLevelFlag &&
+        _rainbowChildFlag1 &&
+        _rainbowChildFlag2 &&
+        rainbowAbilityFlag) {
+    } else {}
   }
 }

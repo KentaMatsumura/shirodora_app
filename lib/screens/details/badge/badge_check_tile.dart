@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shirodoraapp/models/badge.dart';
 import 'package:shirodoraapp/screens/details/badge/card_template.dart';
+import 'package:shirodoraapp/shared/loading.dart';
 
 class BadgeCheckTile extends StatefulWidget {
   final Map silver;
@@ -21,7 +22,7 @@ class _BadgeCheckTileState extends State<BadgeCheckTile> {
   Widget build(BuildContext context) {
     final badgeDataList = Provider.of<Badge>(context) ?? Badge();
     if (badgeDataList == null) {
-      return Container();
+      return Loading();
     } else {
       return ChangeNotifierProvider<BadgeFlag>(
         create: (_) => flag,

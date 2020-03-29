@@ -122,9 +122,9 @@ class DatabaseService {
   Badge _badgeDataFromSnapshot(DocumentSnapshot snapshot) {
     try {
       return Badge(
-        silver: snapshot.data['silver'],
-        gold: snapshot.data['gold'],
-        rainbow: snapshot.data['rainbow'],
+        silver: snapshot.data['silver'] ?? '',
+        gold: snapshot.data['gold'] ?? '',
+        rainbow: snapshot.data['rainbow'] ?? '',
       );
     } catch (e) {
       return new Badge();
@@ -134,9 +134,9 @@ class DatabaseService {
   Trophy _trophyDataFromSnapshot(DocumentSnapshot snapshot) {
     try {
       return Trophy(
-        d2: snapshot.data['d2_trophy'],
-        d1: snapshot.data['d1_trophy'],
-        d0: snapshot.data['d0_trophy']['Implemented'],
+        d2: snapshot.data['d2_trophy'] ?? '',
+        d1: snapshot.data['d1_trophy'] ?? '',
+        d0: snapshot.data['d0_trophy']['Implemented'] ?? '',
       );
     } catch (e) {
       return new Trophy();

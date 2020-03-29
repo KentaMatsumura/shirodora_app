@@ -42,44 +42,6 @@ class D2CheckBox extends StatefulWidget {
 }
 
 class _D2CheckBoxState extends State<D2CheckBox> {
-  @override
-  Widget build(BuildContext context) {
-    var _flag = Provider.of<TrophyFlag>(context);
-    print('${widget.d2}');
-    return Column(
-      children: <Widget>[
-        CustomDivider(),
-        CheckboxListTile(
-          activeColor: Colors.orange,
-          title: Text('キャラクターLv20以上'),
-          value: _flag.d2LevelFlag,
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (bool e) {
-            setState(() {
-              _flag.setD2LevelFlag();
-            });
-          },
-        ),
-        CustomDivider(),
-        CheckboxListTile(
-          activeColor: Colors.orange,
-          title: Text('うまP200以上'),
-          value: _flag.d2UmapFlag,
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (bool e) {
-            setState(() {
-              _flag.setD2UmapFlag();
-            });
-          },
-        ),
-        CustomDivider(),
-        _d2CharacterFirst(_flag),
-        CustomDivider(),
-        _d2CharacterSecond(_flag),
-      ],
-    );
-  }
-
   Widget _d2CharacterFirst(TrophyFlag _flag) {
     if (widget.d2['0']['name'] == '-') {
       _flag.setD2ChildFlag1();
@@ -141,6 +103,44 @@ class _D2CheckBoxState extends State<D2CheckBox> {
       );
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    var _flag = Provider.of<TrophyFlag>(context);
+    print('${widget.d2}');
+    return Column(
+      children: <Widget>[
+        CustomDivider(),
+        CheckboxListTile(
+          activeColor: Colors.orange,
+          title: Text('キャラクターLv20以上'),
+          value: _flag.d2LevelFlag,
+          controlAffinity: ListTileControlAffinity.leading,
+          onChanged: (bool e) {
+            setState(() {
+              _flag.setD2LevelFlag();
+            });
+          },
+        ),
+        CustomDivider(),
+        CheckboxListTile(
+          activeColor: Colors.orange,
+          title: Text('うまP200以上'),
+          value: _flag.d2UmapFlag,
+          controlAffinity: ListTileControlAffinity.leading,
+          onChanged: (bool e) {
+            setState(() {
+              _flag.setD2UmapFlag();
+            });
+          },
+        ),
+        CustomDivider(),
+        _d2CharacterFirst(_flag),
+        CustomDivider(),
+        _d2CharacterSecond(_flag),
+      ],
+    );
+  }
 }
 
 class D1CheckBox extends StatefulWidget {
@@ -153,43 +153,6 @@ class D1CheckBox extends StatefulWidget {
 }
 
 class _D1CheckBoxState extends State<D1CheckBox> {
-  @override
-  Widget build(BuildContext context) {
-    var _flag = Provider.of<TrophyFlag>(context);
-    return Column(
-      children: <Widget>[
-        CustomDivider(),
-        CheckboxListTile(
-          activeColor: Colors.orange,
-          title: Text('キャラクターLv30以上'),
-          value: _flag.d1LevelFlag,
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (bool e) {
-            setState(() {
-              _flag.setD1LevelFlag();
-            });
-          },
-        ),
-        CustomDivider(),
-        CheckboxListTile(
-          activeColor: Colors.orange,
-          title: Text('うまP800以上'),
-          value: _flag.d1UmapFlag,
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (bool e) {
-            setState(() {
-              _flag.setD1UmapFlag();
-            });
-          },
-        ),
-        CustomDivider(),
-        _d1CharacterFirst(_flag),
-        CustomDivider(),
-        _d1CharacterSecond(_flag),
-      ],
-    );
-  }
-
   Widget _d1CharacterFirst(TrophyFlag _flag) {
     if (widget.d1['0']['name'] == '-') {
       _flag.setD1ChildFlag1();
@@ -251,6 +214,43 @@ class _D1CheckBoxState extends State<D1CheckBox> {
       );
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    var _flag = Provider.of<TrophyFlag>(context);
+    return Column(
+      children: <Widget>[
+        CustomDivider(),
+        CheckboxListTile(
+          activeColor: Colors.orange,
+          title: Text('キャラクターLv30以上'),
+          value: _flag.d1LevelFlag,
+          controlAffinity: ListTileControlAffinity.leading,
+          onChanged: (bool e) {
+            setState(() {
+              _flag.setD1LevelFlag();
+            });
+          },
+        ),
+        CustomDivider(),
+        CheckboxListTile(
+          activeColor: Colors.orange,
+          title: Text('うまP800以上'),
+          value: _flag.d1UmapFlag,
+          controlAffinity: ListTileControlAffinity.leading,
+          onChanged: (bool e) {
+            setState(() {
+              _flag.setD1UmapFlag();
+            });
+          },
+        ),
+        CustomDivider(),
+        _d1CharacterFirst(_flag),
+        CustomDivider(),
+        _d1CharacterSecond(_flag),
+      ],
+    );
+  }
 }
 
 class D0CheckBox extends StatefulWidget {
@@ -266,7 +266,7 @@ class _D0CheckBoxState extends State<D0CheckBox> {
   @override
   Widget build(BuildContext context) {
     var _flag = Provider.of<TrophyFlag>(context);
-    if (widget.d0){
+    if (widget.d0) {
       return Column(
         children: <Widget>[
           CustomDivider(),
@@ -307,8 +307,7 @@ class _D0CheckBoxState extends State<D0CheckBox> {
           ),
         ],
       );
-    }
-    else{
+    } else {
       _flag.setD0SkillFlag();
       _flag.setD0LevelFlag();
       _flag.setD0UmapFlag();

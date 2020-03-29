@@ -27,10 +27,15 @@ class _CharacterImageTableState extends State<CharacterImageTable> {
             }),
           );
         },
-        child: Image.asset(
-          'assets/${item.cid}.png',
-          scale: 5.0,
-        ),
+        child: item.cid != null
+            ? Image.asset(
+                'assets/${item.cid}.png',
+                scale: 5.0,
+              )
+            : Image.asset(
+                'assets/1.png',
+                scale: 5.0,
+              ),
       ));
     });
     return images;

@@ -107,7 +107,6 @@ class _D2CheckBoxState extends State<D2CheckBox> {
   @override
   Widget build(BuildContext context) {
     var _flag = Provider.of<TrophyFlag>(context);
-    print('${widget.d2}');
     return Column(
       children: <Widget>[
         CustomDivider(),

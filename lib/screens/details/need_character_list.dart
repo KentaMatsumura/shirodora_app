@@ -101,10 +101,15 @@ class _BuildGestureDetectorState extends State<BuildGestureDetector> {
           }),
         );
       },
-      child: Image.asset(
-        'assets/${widget.v['id']}.png',
-        scale: 5.0,
-      ),
+      child: widget.v['id'] != null
+          ? Image.asset(
+              'assets/${widget.v['id']}.png',
+              scale: 5.0,
+            )
+          : Image.asset(
+              'assets/0.png',
+              scale: 5.0,
+            ),
     );
   }
 }
